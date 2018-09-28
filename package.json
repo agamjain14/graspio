@@ -1,0 +1,32 @@
+{
+  "name": "graspio",
+  "version": "1.0.0",
+  "description": "Grasp.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agamjain14/graspio.git"
+  },
+  "keywords": [
+    "Angular",
+    "5"
+  ],
+  "author": "Agam Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agamjain14/graspio/issues"
+  },
+  "homepage": "https://github.com/agamjain14/graspio#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.18",
+    "path": "^0.12.7"
+  }
+}
