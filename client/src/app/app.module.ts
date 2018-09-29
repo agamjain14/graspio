@@ -14,6 +14,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { AdminAuthGuard } from './guards/admin.auth.guard';
 import { ProfileComponent } from './component/profile/profile.component';
+<<<<<<< HEAD
+=======
+import { TaskComponent } from './component/task/task.component';
+
+>>>>>>> task
 
 @NgModule({
   declarations: [
@@ -23,6 +28,10 @@ import { ProfileComponent } from './component/profile/profile.component';
     LoginComponent,
     NavbarComponent,
     ProfileComponent,
+<<<<<<< HEAD
+=======
+    TaskComponent
+>>>>>>> task
   ],
   imports: [
     BrowserModule,

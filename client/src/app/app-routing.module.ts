@@ -8,6 +8,10 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 
 import { AdminAuthGuard } from './guards/admin.auth.guard';
 import { ProfileComponent } from './component/profile/profile.component';
+<<<<<<< HEAD
+=======
+import { TaskComponent } from './component/task/task.component';
+>>>>>>> task
 
 const appRoutes: Routes = [
     // ANONYMOUS USER
@@ -16,8 +20,8 @@ const appRoutes: Routes = [
     {path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard]},
 
     // NORMAL USERS
-
     // ADMIN USERS
+    {path: 'task', component: TaskComponent, canActivate: [AuthGuard, AdminAuthGuard]},
 
     // FOR NORMAL AND ADMIN USER
     {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, // Profile Route

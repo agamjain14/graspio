@@ -8,7 +8,10 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </button>
+<<<<<<< HEAD
       <a class="navbar-brand" routerLink="/">Task</a>
+=======
+>>>>>>> task
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
@@ -16,6 +19,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a *ngIf="authService.loggedIn()" routerLink="/profile">Profile</a></li>
+<<<<<<< HEAD
+=======
+        <li><a *ngIf="authService.loggedIn()" routerLink="/task">Task</a></li>
+>>>>>>> task
         <li><a *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
         <li><a *ngIf="authService.loggedIn()" href="#" (click)="onLogoutClick()">Logout</a></li>
         <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
