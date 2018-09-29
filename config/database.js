@@ -1,7 +1,7 @@
 const crypto = require('crypto').randomBytes(256).toString('hex');
 
 module.exports = {
-    uri: 'mongodb://localhost:27017/grasp',
+    uri: 'mongodb://localhost:27017/graspio',
     secret: crypto,
-    db : 'grasp'
+    db : 'graspio'
 }
