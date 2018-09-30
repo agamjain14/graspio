@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { decode } from 'jwt-decode';
 import 'rxjs/add/operator/first';
 
 
@@ -9,16 +10,15 @@ import 'rxjs/add/operator/first';
 export class AdminAuthGuard implements CanActivate {
 
     redirectUrl;
-    constructor(private authService: AuthService, private router: Router) {
+    constructor() {
     }
     canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-        return this.authService.getProfile().map(profile => {
-            if (profile.user.isAdmin === true) {
-                this.redirectUrl = state.url;
-                return true;
-            } else {
-                return false;
-            }
-        }).first();
+        const expectedRole = JSON.stringify(router.data.expectedRole);
+        const role = localStorage.getItem('role');
+        if (role === router.data.expectedRole) {
+            this.redirectUrl = state.url;
+            return true;
+        }
+        return false;
     }
 }

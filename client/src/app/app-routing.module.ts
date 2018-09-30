@@ -18,10 +18,10 @@ const appRoutes: Routes = [
 
     // NORMAL USERS
     // ADMIN USERS
-    {path: 'task', component: TaskComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+    {path: 'task', component: TaskComponent, canActivate: [AuthGuard], data: {expectedRole: 'admin'}},
 
     // FOR NORMAL AND ADMIN USER
-    {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, // Profile Route
+    {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}, // Profile Route
     {path: '**', component: HomeComponent}
 ];
 

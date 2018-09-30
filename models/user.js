@@ -69,7 +69,7 @@ let validUsername = (username) => {
     return false; // Return error
   } else {
     // Regular expression to test if username format is valid
-    const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
+    const regExp = new RegExp(/^[a-zA-Z ]+$/);
     return regExp.test(username); // Return regular expression test result (true or false)
   }
 };
@@ -178,7 +178,7 @@ const userSchema = new Schema({
   password: { type: String, required: true, validate: passwordValidators },
   address: { type: String, required: true },
   contact: { type: Number, required: true, validate: contactValidators },
-  isAdmin: { type: Boolean, default: false }
+  isAdmin: { type: String, default: 'general' }
 });
 
 // Schema Middleware to Encrypt Password

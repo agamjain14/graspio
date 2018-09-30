@@ -1,3 +1,138 @@
-<p>
-  task works!
-</p>
+<h1 class="page-header">Task</h1>
+
+<div *ngIf="authService.role === 'admin'; else nonAdmin">
+    
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message" *ngIf="message && newTask">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+  
+  <!-- New Task Button -->
+  <ng-container *ngIf="role === 'admin'">
+    <button type="button" name="button" class="btn btn-warning" *ngIf="!newTask" (click)="newTaskForm()">New Task</button>
+  </ng-container>
+  
+  
+  <!-- Reload Button -->
+  <button [disabled]="loadingtasks" type="button" name="button" class="btn btn-default" *ngIf="!newTask" (click)="reloadTasks()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
+  
+  <br />
+  <br />
+  
+  <!-- New task Form -->
+  
+  <form [formGroup]="form" name="taskForm" (submit)="ontaskSubmit()" *ngIf="newTask">
+    <!-- Title Input -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+        <input type="text" name="title" class="form-control" placeholder="*task Title" autocomplete="off" formControlName="title" />
+        <ul class="help-block">
+          <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+          <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
+          <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Body Input -->
+    <div class="form-group">
+      <label for="body">Body</label>
+      <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
+        <textarea name="body" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="body"></textarea>
+        <ul class="help-block">
+          <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
+          <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">Max length: 500, Min length: 5</li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Go Back Button -->
+    <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
+    <!-- Submit Button -->
+    <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+  
+  </form>
+  <!-- New task Form -->
+  
+  <!-- Panel Start -->
+  <div >
+    <div class="container" *ngIf="!newTask">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+  
+  
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+      
+          
+          <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="body">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.body}} </mat-cell>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="createdBy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Created By </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.createdBy}} </mat-cell>
+          </ng-container>
+          
+          
+          <ng-container matColumnDef="createdOn">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Created On </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.createdAt | date: 'MMM dd, yyyy'}}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="assignedTo" >
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned To </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div *ngIf="element.assignedTo !== ''; else assignit">
+                    {{ element.assignedTo}}
+                </div>
+                <ng-template #assignit >
+                  <form #regForm='ngForm' (ngSubmit)="assign(element._id, regForm.value)" >
+                      <mat-form-field>
+                          <mat-select  panelClass="example-panel-dark-blue" name="assignedTo" ngModel required>
+                            <mat-option *ngFor="let user of users" [value]="user">{{user.username}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <button [disabled]="assignmentProccessing" type="submit" class="btn btn-default btn-sm" id="register">Assign</button>
+                    </form>
+                </ng-template>
+              </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>      
+      </div>
+    </div>
+  </div>
+  <!-- Panel End -->
+  
+</div>
+
+
+<ng-template #nonAdmin >
+    <app-taskforuser ></app-taskforuser>  
+</ng-template>
+
+
+
+
+

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  role;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -19,7 +20,13 @@ export class NavbarComponent implements OnInit {
     this.authService.logout(); // Logout user
     this.router.navigate(['/']); // Navigate back to home page
   }
-
+  checkRole() {
+    if (this.authService.role === 'admin') {
+      this.role = true;
+    } else {
+      this.role = false;
+    }console.log('fsdf ' + this.role);
+  }
   ngOnInit() {
   }
 }

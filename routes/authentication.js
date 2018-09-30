@@ -143,7 +143,7 @@ module.exports = (router) => {
                 res.json({ success: false, message: 'Password invalid' }); // Return error
               } else {
                 const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' }); // Create a token for client
-                res.json({ success: true, message: 'Success!', token: token, user: { username: user.username } }); // Return success and token to frontend
+                res.json({ success: true, message: 'Success!', token: token, user: { username: user.username }, role: user.isAdmin }); // Return success and token to frontend
               }
             }
           }
@@ -193,6 +193,27 @@ module.exports = (router) => {
       }
     });
   });
+
+  /* ===============================================================
+    GET ALL USERS
+  =============================================================== */
+  router.get('/allUsers', (req, res) => {
+    // Search database for all task posts
+    User.find({isAdmin: 'general'}, (err, users) => {
+      // Check if error was found or not
+      if (err) {
+        res.json({ success: false, message: err }); // Return error message
+      } else {
+        // Check if users were found in database
+        if (!users) {
+          res.json({ success: false, message: 'No users found.' }); // Return error of no tasks found
+        } else {
+          res.json({ success: true, users: users }); // Return success and tasks array
+        }
+      }
+    }); // Sort tasks from newest to oldest
+  });
+
 
   return router; // Return router object to main index.js
 }

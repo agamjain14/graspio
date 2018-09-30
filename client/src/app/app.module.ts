@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
@@ -14,11 +14,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { AdminAuthGuard } from './guards/admin.auth.guard';
 import { ProfileComponent } from './component/profile/profile.component';
-<<<<<<< HEAD
-=======
 import { TaskComponent } from './component/task/task.component';
-
->>>>>>> task
+import { TaskService } from './services/task.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import {MatSelectModule, MatButtonModule, MatTableModule, MatInputModule, MatSortModule, MatSort } from '@angular/material';
+import { TaskforuserComponent } from './component/taskforuser/taskforuser.component';
 
 @NgModule({
   declarations: [
@@ -28,18 +29,28 @@ import { TaskComponent } from './component/task/task.component';
     LoginComponent,
     NavbarComponent,
     ProfileComponent,
-<<<<<<< HEAD
-=======
-    TaskComponent
->>>>>>> task
+    TaskComponent,
+    TaskforuserComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    CommonModule,
+    MatSelectModule,
+    // GridModule,
+    MatButtonModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule
+    // CdkTableModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, AdminAuthGuard],
+  providers: [AuthService, AuthGuard, NotAuthGuard, AdminAuthGuard, TaskService, MatSort],
+  exports: [MatSelectModule, MatButtonModule, MatTableModule, MatInputModule, MatSortModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
