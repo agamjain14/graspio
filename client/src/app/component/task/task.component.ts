@@ -34,7 +34,7 @@ export class TaskComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private taskService: TaskService,
     private router: Router
   ) {

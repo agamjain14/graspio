@@ -23,7 +23,7 @@ export class RevisionComponent implements OnInit {
   id = '';
   currentUrl;
   loading = true;
-  form: FormGroup;
+  form;
   revisions;
 
   commentForm;
