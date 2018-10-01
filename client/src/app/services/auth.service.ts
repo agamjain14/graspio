@@ -18,13 +18,14 @@ export class AuthService {
   registerUser(user) {
     return this.http.post(this.domain + 'authentication/register', user).map(res => res.json());
   }
-
+  // Function to create headers, add token, to be used in HTTP requests
   createAuthenticationHeaders() {
-    this.loadToken();
+    this.loadToken(); // Get token so it can be attached to headers
+    // Headers configuration options
     this.options = new RequestOptions({
       headers : new Headers({
-        'Content-Type': 'application/json',
-        'authorization': this.authToken
+        'Content-Type': 'application/json', // Format set to JSON
+        'authorization': this.authToken// Attach token
       })
     });
 

@@ -18,8 +18,11 @@ import { TaskComponent } from './component/task/task.component';
 import { TaskService } from './services/task.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {MatSelectModule, MatButtonModule, MatTableModule, MatInputModule, MatSortModule, MatSort } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatTableModule, MatInputModule, MatSortModule, MatSort } from '@angular/material';
 import { TaskforuserComponent } from './component/taskforuser/taskforuser.component';
+import { RevisionComponent } from './component/revision/revision.component';
+import { RevisionService } from './services/revision.service';
+import { AdminrevisionComponent } from './component/adminrevision/adminrevision.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { TaskforuserComponent } from './component/taskforuser/taskforuser.compon
     NavbarComponent,
     ProfileComponent,
     TaskComponent,
-    TaskforuserComponent
+    TaskforuserComponent,
+    RevisionComponent,
+    AdminrevisionComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { TaskforuserComponent } from './component/taskforuser/taskforuser.compon
     MatSortModule
     // CdkTableModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, AdminAuthGuard, TaskService, MatSort],
+  providers: [RevisionService, AuthService, AuthGuard, NotAuthGuard, AdminAuthGuard, TaskService, MatSort],
   exports: [MatSelectModule, MatButtonModule, MatTableModule, MatInputModule, MatSortModule],
   bootstrap: [AppComponent]
 })

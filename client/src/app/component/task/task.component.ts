@@ -4,12 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { TaskService } from '../../services/task.service';
 import { Router } from '@angular/router';
 import { MatPaginator, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
-import { DataSource } from '@angular/cdk/collections';
-import { Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/merge';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
@@ -31,7 +27,7 @@ export class TaskComponent implements OnInit {
   temp;
 
   form;
-  displayedColumns = ['_id', 'title', 'body', 'createdBy', 'createdOn', 'assignedTo'];
+  displayedColumns = ['_id', 'title', 'body', 'createdBy', 'createdOn', 'assignedTo', 'view'];
   // taskDatabase  = new TaskDatabase(this.taskService);
   dataSource;
   @ViewChild(MatSort) sort: MatSort;

@@ -9,6 +9,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 import { AdminAuthGuard } from './guards/admin.auth.guard';
 import { ProfileComponent } from './component/profile/profile.component';
 import { TaskComponent } from './component/task/task.component';
+import { RevisionComponent } from './component/revision/revision.component';
+import { AdminrevisionComponent } from './component/adminrevision/adminrevision.component';
 
 const appRoutes: Routes = [
     // ANONYMOUS USER
@@ -20,7 +22,10 @@ const appRoutes: Routes = [
     // ADMIN USERS
     {path: 'task', component: TaskComponent, canActivate: [AuthGuard], data: {expectedRole: 'admin'}},
 
+
     // FOR NORMAL AND ADMIN USER
+    {path: 'revision/:id', component: RevisionComponent, canActivate: [AuthGuard]},
+    {path: 'adminrevision/:id', component: AdminrevisionComponent, canActivate: [AuthGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}, // Profile Route
     {path: '**', component: HomeComponent}
 ];

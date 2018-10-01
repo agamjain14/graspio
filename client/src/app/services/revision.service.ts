@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
 @Injectable()
-export class TaskService {
+export class RevisionService {
 
-  options;
   domain = this.authService.domain;
+  options;
 
   constructor(
     private authService: AuthService,
@@ -24,32 +24,34 @@ export class TaskService {
     });
   }
 
-
-  // Function to create a new task
-  newTask(task) {
+  // Function to create a new REVISION
+  newRevision(revision) {
     this.authService.createAuthenticationHeaders(); // Create headers
-    return this.http.post(this.domain + 'tasks/newTask', task, this.options).map(res => res.json());
-  }
-  // Function to get all task from the database
-  getAllTasks() {
-    this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.domain + 'tasks/allTasks', this.options).map(res => res.json());
+    return this.http.post(this.domain + 'revisions/newRevision', revision, this.authService.options).map(res => res.json());
   }
 
-  // Function to get single task from the database
-  getsingleTask(id) {
+  // FUNCTION TO GET ALL REVISION FOR PARTICULAR USER
+  getAllRevisionforUseruse(id) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.domain + 'tasks/singleTask/' + id, this.options).map(res => res.json());
-  }
-  // Function to UPDATE single task from the database
-  updateTask(id, assignedTo) {
-    this.createAuthenticationHeaders(); // Create headers
-    return this.http.put(this.domain + 'tasks/updateTask/' + id, assignedTo, this.options).map(res => res.json());
+    return this.http.get(this.domain + 'revisions/allRevision/' + id, this.options).map(res => res.json());
   }
 
-  // FUNCTION TO GET TASK BASED ON USER
-  getTaskRelatedtoUser(assignedTo) {
+
+  getAllRevisionOnTaskId(id) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.domain + 'tasks/allTaskforuser/' + assignedTo , this.options).map(res => res.json());
+    return this.http.get(this.domain + 'revisions/allTaskRevision/' + id, this.authService.options).map(res => res.json());
+
+  }
+
+  // Function to post a comment on a revision post
+  postComment(id, comment) {
+    this.createAuthenticationHeaders(); // Create headers
+    // Create revisionData to pass to backend
+    const revisionData = {
+      id: id,
+      comment: comment
+    };
+    return this.http.post(this.domain + 'revisions/comment', revisionData, this.options).map(res => res.json());
+
   }
 }

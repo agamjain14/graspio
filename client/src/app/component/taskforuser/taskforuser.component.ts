@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TaskService } from '../../services/task.service';
 import { MatPaginator, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-taskforuser',
@@ -14,7 +13,7 @@ export class TaskforuserComponent implements OnInit {
   username = '';
   tasks;
   size = 0;
-  displayedColumns = ['_id', 'title', 'body', 'createdBy', 'createdOn'];
+  displayedColumns = ['_id', 'title', 'body', 'createdBy', 'createdOn', 'submit'];
   // taskDatabase  = new TaskDatabase(this.taskService);
   dataSource;
   @ViewChild(MatSort) sort: MatSort;

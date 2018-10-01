@@ -2,11 +2,11 @@
 
 <div *ngIf="authService.role === 'admin'; else nonAdmin">
     
-<!-- Custom Success/Error Message -->
-<div class="row show-hide-message" *ngIf="message && newTask">
-    <div [ngClass]="messageClass">
-      {{ message }}
-    </div>
+  <!-- Custom Success/Error Message -->
+  <div class="row show-hide-message" *ngIf="message && newTask">
+      <div [ngClass]="messageClass">
+        {{ message }}
+      </div>
   </div>
   
   <!-- New Task Button -->
@@ -116,7 +116,24 @@
                 </ng-template>
               </mat-cell>
           </ng-container>
-  
+          
+
+          <ng-container matColumnDef="view" >
+            <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+              <div *ngIf="element.assignedTo !== ''; else notassign">
+                  <a [routerLink]="['/adminrevision/',element._id]"><button type="button" name="button" class="btn btn-sm btn-info">View Revision</button></a>
+              </div>
+              <ng-template #notassign >
+                  <p>Task Not Assigned</p>
+                </ng-template>
+            </mat-cell> 
+
+
+
+
+          </ng-container>
+
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>      
