@@ -179,7 +179,7 @@ module.exports = (router) => {
   =============================================================== */
   router.get('/profile', (req, res) => {
     // Search for user in database
-    User.findOne({ _id: req.decoded.userId }).select('username email _id').exec((err, user) => {
+    User.findOne({ _id: req.decoded.userId }).select('username email _id address contact isAdmin').exec((err, user) => {
       // Check if error connecting
       if (err) {
         res.json({ success: false, message: err }); // Return error
@@ -192,6 +192,29 @@ module.exports = (router) => {
         }
       }
     });
+  });
+
+
+ /* ===============================================================
+     GET SINGLE USER BASED ON ID
+  =============================================================== */
+  router.get('/singleUser/:id', (req, res) => {
+    // Search database for  user 
+    if (!req.params.id) {
+      res.json({ success: false, message: 'No user ID was provided' });
+    } else {
+      User.findOne({ _id: req.params.id }, (err, user) => {
+        if (err) {
+          res.json({ success: false, message: 'Not valid User' });
+        } else {
+          if (!user) {
+            res.json({ success: false, message: 'User Not found' });
+          } else {
+            res.json({ success: true, user: user });
+          }
+        }
+      });
+    }
   });
 
   /* ===============================================================
@@ -214,6 +237,28 @@ module.exports = (router) => {
     }); // Sort tasks from newest to oldest
   });
 
+
+  /* ===============================================================
+     UPDATE SINGLE USER
+  =============================================================== */
+  router.put('/updateUser', (req, res) => {
+    // Search database for all task posts
+    if (!req.body._id) {
+      res.json({ success: false, message: 'No user ID was provided' });
+    } else {
+      User.findByIdAndUpdate(req.body._id,{$set: {email: req.body.email, address: req.body.address, contact: req.body.contact}},(err,user) => {
+        if (err) {
+          res.json({ success: false, message: 'Not valid User' });
+        } else {
+          if (!user) {
+            res.json({ success: false, message: 'User Not found' });
+          } else {
+            res.json({ success: true, user: user });
+          }
+        }
+      });
+    }
+  });
 
   return router; // Return router object to main index.js
 }

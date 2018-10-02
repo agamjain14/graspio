@@ -10,9 +10,11 @@ export class ProfileComponent implements OnInit {
 
   username = '';
   email = '';
-
+  contact;
+  address;
+  id;
   constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -20,6 +22,9 @@ export class ProfileComponent implements OnInit {
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Set username
       this.email = profile.user.email; // Set e-mail
+      this.contact = profile.user.contact;
+      this.address = profile.user.address;
+      this.id = profile.user._id;
     });
   }
 

@@ -1,5 +1,16 @@
-<h2 class="page-header">Profile Page</h2>
-<ul class="list-group">
-  <li class="list-group-item">Username: {{ username }}</li>
-  <li class="list-group-item">Email: {{ email }}</li>
-</ul>
+<h2 class="page-header">Profile</h2>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdX6tPX96Zk00S47LcCYAdoFK8INeCElPeJrVDrh8phAGqUZP_g" alt="Card image cap">
+  <div class="card-body">
+    <h3 class="card-title"><strong>{{ username }}</strong></h3>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Email: </strong>{{ email }}</li>
+    <li class="list-group-item"><strong>Contact: </strong>{{ contact }}</li>
+    <li class="list-group-item"><strong>Address: </strong>{{ address }}</li>
+  </ul>
+  <div class="card-body">
+    <a [routerLink]="['/profile-edit/',id]"><button type="button" name="button" class="btn btn-sm btn-info">Edit Profile</button></a>
+  </div>
+</div>

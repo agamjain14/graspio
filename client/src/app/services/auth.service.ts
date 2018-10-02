@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 export class AuthService {
 
   // domain = '';
-  domain = 'http://localhost:3000';
+  domain = 'http://localhost:3000/';
   authToken;
   user;
   options;
@@ -67,6 +67,19 @@ export class AuthService {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'authentication/profile', this.options).map(res => res.json());
   }
+
+  // Function to get the user using the id
+  getSingleUser(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.get(this.domain + 'authentication/singleUser/' + id, this.options).map(res => res.json());
+  }
+
+  // Function to edit/update user
+  editUser(user) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.put(this.domain + 'authentication/updateUser/', user, this.options).map(res => res.json());
+  }
+
 
   getAllUsers() {
     this.createAuthenticationHeaders(); // Create headers

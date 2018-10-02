@@ -173,8 +173,8 @@ export class TaskComponent implements OnInit {
     // Get profile username on page load
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Used when creating new task posts and comments
+      this.role = profile.user.isAdmin;
     });
-    this.role = localStorage.getItem('role');
     this.getAllTasks();
     this.getAllUsers();
   }

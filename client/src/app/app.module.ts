@@ -23,6 +23,7 @@ import { TaskforuserComponent } from './component/taskforuser/taskforuser.compon
 import { RevisionComponent } from './component/revision/revision.component';
 import { RevisionService } from './services/revision.service';
 import { AdminrevisionComponent } from './component/adminrevision/adminrevision.component';
+import { ProfileeditComponent } from './component/profileedit/profileedit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdminrevisionComponent } from './component/adminrevision/adminrevision.
     TaskComponent,
     TaskforuserComponent,
     RevisionComponent,
-    AdminrevisionComponent
+    AdminrevisionComponent,
+    ProfileeditComponent
   ],
   imports: [
     BrowserModule,

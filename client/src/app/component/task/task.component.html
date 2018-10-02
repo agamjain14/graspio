@@ -1,6 +1,6 @@
 <h1 class="page-header">Task</h1>
 
-<div *ngIf="authService.role === 'admin'; else nonAdmin">
+<div *ngIf="role === 'admin'; else nonAdmin">
     
   <!-- Custom Success/Error Message -->
   <div class="row show-hide-message" *ngIf="message && newTask">

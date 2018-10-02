@@ -1,0 +1,38 @@
+<h1 class="page-header">Edit Profile</h1>
+
+<!-- Custom Success/Erro Message -->
+<div class="row show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<!-- Edit Blog Form -->
+<form (submit)="updateUserSubmit()" *ngIf="!loading">
+  <!-- Username Field -->
+  <div class="form-group">
+    <label for="username">Username</label>
+    <!-- Username Input -->
+    <input [disabled]="processing" type="text" name="username" placeholder="*Username" class="form-control" [(ngModel)]="user.username" />
+  </div>
+
+  <!-- Address Field -->
+  <div class="form-group">
+    <label for="address">Address</label>
+    <!-- Body Input -->
+    <textarea [disabled]="processing" name="address" rows="8" cols="80" [(ngModel)]="user.address" class="form-control" placeholder="*Address"></textarea>
+  </div>
+
+  <!-- Contact Field -->
+  <div class="form-group">
+    <label for="contact">Contact</label>
+    <!-- contact Input -->
+    <input [disabled]="processing" type="text" name="contact" placeholder="*Contact" class="form-control" [(ngModel)]="user.contact" />
+  </div>
+
+  <!-- Go Back Button -->
+  <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="goBack()">Go Back</button>
+  <!-- Save Changes Button -->
+  <button [disabled]="processing" type="submit" name="save" class="btn btn-info">Save Changes</button>
+
+</form>

@@ -11,6 +11,7 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { TaskComponent } from './component/task/task.component';
 import { RevisionComponent } from './component/revision/revision.component';
 import { AdminrevisionComponent } from './component/adminrevision/adminrevision.component';
+import { ProfileeditComponent } from './component/profileedit/profileedit.component';
 
 const appRoutes: Routes = [
     // ANONYMOUS USER
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
 
     // FOR NORMAL AND ADMIN USER
     {path: 'revision/:id', component: RevisionComponent, canActivate: [AuthGuard]},
+    {path: 'profile-edit/:id', component: ProfileeditComponent, canActivate: [AuthGuard]},
     {path: 'adminrevision/:id', component: AdminrevisionComponent, canActivate: [AuthGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}, // Profile Route
     {path: '**', component: HomeComponent}

@@ -14,7 +14,6 @@ export class TaskforuserComponent implements OnInit {
   tasks;
   size = 0;
   displayedColumns = ['_id', 'title', 'body', 'createdBy', 'createdOn', 'submit'];
-  // taskDatabase  = new TaskDatabase(this.taskService);
   dataSource;
   @ViewChild(MatSort) sort: MatSort;
 

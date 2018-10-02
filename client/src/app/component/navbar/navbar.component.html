@@ -13,10 +13,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a *ngIf="authService.loggedIn()" routerLink="/profile">Profile</a></li>
-        <li><a *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
-        <li><a *ngIf="authService.loggedIn()" routerLink="/task">Task</a></li>
-        <li><a *ngIf="authService.loggedIn()" (click)="onLogoutClick()">Logout</a></li>
+        <li><a *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/profile">Profile</a></li>
+        <li><a *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/login">Login</a></li>
+        <li><a *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/task">Task</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a *ngIf="authService.loggedIn()"  (click)="onLogoutClick()">Logout</a></li>
         <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
       </ul>
     </div>
