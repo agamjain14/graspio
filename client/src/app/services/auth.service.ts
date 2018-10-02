@@ -6,8 +6,8 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class AuthService {
 
-  domain = '';
-  // domain = 'http://localhost:3000';
+  // domain = '';
+  domain = 'http://localhost:3000';
   authToken;
   user;
   options;

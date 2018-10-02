@@ -14,8 +14,6 @@ const revision = require('./routes/revision')(router); // Import task Routes
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors'); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 
-const port = process.env.PORT || 3000;
-
 // Database Connection
 mongoose.connect(config.uri, (err) => {
   if (err) {
@@ -29,17 +27,17 @@ mongoose.connect(config.uri, (err) => {
 app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
-app.use(express.static(__dirname + '/public')); // Provide static directory for frontend
+app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
 app.use('/authentication', authentication);
 app.use('/tasks', task);
 app.use('/revisions', revision);
 
 // Connect server to Angular  Index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
+  res.sendFile(path.join(__dirname + '/client/dist/index.html'));
 });
 
 // Start Server: Listen on port 3000
-app.listen(port, () => {
-  console.log('Listening on port ' + port);
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
 });
