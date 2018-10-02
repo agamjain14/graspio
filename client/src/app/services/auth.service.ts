@@ -7,6 +7,7 @@ import 'rxjs/add/observable/of';
 export class AuthService {
 
   domain = '';
+  // domain = 'http://localhost:3000';
   authToken;
   user;
   options;
